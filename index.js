@@ -1,4 +1,5 @@
 const express = require('express');
+const db = require('./configs/mongoose');
 
 const app = express();
 const port = 8000;
@@ -6,6 +7,10 @@ const port = 8000;
 // setting view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
+
+// setting ejs layouts
+const expressLayouts = require('express-ejs-layouts');
+app.use(expressLayouts);
 
 // using routes
 app.use('/', require('./routes'));
