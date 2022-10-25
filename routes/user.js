@@ -1,4 +1,5 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 
 // import user controller
@@ -12,5 +13,13 @@ router.get('/sign-up', userController.signUp);
 
 // for /user/create-user route
 router.post('/create-user', userController.createUser);
+
+// for /user/create-session route
+router.post(
+  '/create-session',
+  // authenticate user using passport
+  passport.authenticate('local', { failureRedirect: '/user/sign-in' }),
+  userController.createSession
+);
 
 module.exports = router;
