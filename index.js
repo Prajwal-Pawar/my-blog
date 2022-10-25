@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
+const MongoStore = require('connect-mongo');
 const db = require('./configs/mongoose');
 const passportLocal = require('./configs/passport-local');
 
@@ -28,12 +29,19 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 100,
     },
+    // persisting cookies
+    store: MongoStore.create({
+      mongoUrl: 'mongodb://localhost/myblog',
+      autoRemove: 'interval',
+      autoRemoveInterval: 20, // auto remove cookie after 20 minutes
+    }),
   })
 );
 
 // using passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser);
 
 // using routes
 app.use('/', require('./routes'));

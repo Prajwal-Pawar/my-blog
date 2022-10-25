@@ -1,16 +1,26 @@
 const User = require('../models/user');
 
-// for sign in page
+// for rendering sign in page
 module.exports.signIn = (req, res) => {
+  // if user is signed in
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+
   return res.render('sign_in');
 };
 
-// for sign up page
+// for rendering sign up page
 module.exports.signUp = (req, res) => {
+  // if user is signed in
+  if (req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+
   return res.render('sign_up');
 };
 
-// for creating a user
+// for creating a user or sign up
 module.exports.createUser = (req, res) => {
   // checking if password and confirm password matches
   if (req.body.password !== req.body.confirm_password) {
@@ -42,7 +52,22 @@ module.exports.createUser = (req, res) => {
   });
 };
 
-// for creating session
+// for sign in
 module.exports.createSession = (req, res) => {
   return res.redirect('/');
+};
+
+// for sign out
+module.exports.destroySession = (req, res) => {
+  req.logout((error) => {
+    if (error) {
+      return next(error);
+    }
+
+    // deleting a session cookie
+    req.session.destroy((error) => {
+      res.clearCookie('myblog');
+      return res.redirect('/');
+    });
+  });
 };
