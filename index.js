@@ -12,6 +12,9 @@ app.set('views', './views');
 const expressLayouts = require('express-ejs-layouts');
 app.use(expressLayouts);
 
+// to use encoded data
+app.use(express.urlencoded({ extended: true }));
+
 // using routes
 app.use('/', require('./routes'));
 
