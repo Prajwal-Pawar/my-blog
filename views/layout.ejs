@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- noty library for notifications -->
+    <link rel="stylesheet" href="/libs/noty/noty.min.css" />
+    <script src="/libs/noty/noty.min.js"></script>
     <title>My Blog</title>
   </head>
   <body>
@@ -12,5 +15,33 @@
 
     <!-- body -->
     <%- body %>
+
+    <!-- scripts -->
+    <!-- noty library for notifications -->
+    <script>
+      // display noty notifications for success
+      <% if (flash.success && flash.success.length > 0) { %>
+        new Noty({
+          theme: 'relax',
+          text: '<%= flash.success %>',
+          type: 'success',
+          layout: 'topRight',
+          progressBar: true,
+          timeout: 1500,
+        }).show();
+      <% } %>
+
+      // display noty notifications for success
+      <% if (flash.error && flash.error.length > 0) { %>
+        new Noty({
+          theme: 'relax',
+          text: '<%= flash.error %>',
+          type: 'error',
+          layout: 'topRight',
+          progressBar: true,
+          timeout: 1500,
+        }).show();
+      <% } %>
+    </script>
   </body>
 </html>

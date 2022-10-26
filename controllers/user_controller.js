@@ -25,6 +25,9 @@ module.exports.createUser = (req, res) => {
   // checking if password and confirm password matches
   if (req.body.password !== req.body.confirm_password) {
     console.log('Password doesnt match');
+    // flash notifications
+    req.flash('error', 'Password doesnt match !');
+
     return res.redirect('back');
   }
 
@@ -47,6 +50,8 @@ module.exports.createUser = (req, res) => {
         return res.redirect('/user/sign-in');
       });
     } else {
+      // flash notifications
+      req.flash('error', 'User already exist !');
       return res.redirect('back');
     }
   });
@@ -54,6 +59,8 @@ module.exports.createUser = (req, res) => {
 
 // for sign in
 module.exports.createSession = (req, res) => {
+  // flash notifications
+  req.flash('success', 'Successfully signed in !');
   return res.redirect('/');
 };
 

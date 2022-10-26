@@ -2,8 +2,10 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongo');
+const flash = require('connect-flash');
 const db = require('./configs/mongoose');
 const passportLocal = require('./configs/passport-local');
+const middleware = require('./configs/middleware');
 
 const app = express();
 const port = 8000;
@@ -11,6 +13,9 @@ const port = 8000;
 // setting view engine
 app.set('view engine', 'ejs');
 app.set('views', './views');
+
+// setting static files
+app.use(express.static('./assets'));
 
 // setting ejs layouts
 const expressLayouts = require('express-ejs-layouts');
@@ -42,6 +47,10 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser);
+
+// for storing flash notification in sessions
+app.use(flash());
+app.use(middleware.setFlash);
 
 // using routes
 app.use('/', require('./routes'));
