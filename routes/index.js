@@ -13,4 +13,7 @@ router.use('/user', require('./user'));
 // post route
 router.use('/post', require('./post'));
 
+// comment route
+router.use('/comment', require('./comment'));
+
 module.exports = router;

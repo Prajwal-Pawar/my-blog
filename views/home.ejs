@@ -2,6 +2,7 @@
 
 <div>
   <ul>
+    <!-- displaying posts -->
     <% for(post of posts){ %>
     <li>
       <%= post.title %> <br />
@@ -11,6 +12,7 @@
       <%= post.user.name %>
     </li>
 
+    <!-- post actions -->
     <!-- if user is logged in and is posts author -->
     <% if(locals.user && locals.user.id == post.user.id){ %>
     <a href="">Edit Post</a>

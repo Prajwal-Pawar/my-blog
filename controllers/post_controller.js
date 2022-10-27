@@ -38,6 +38,10 @@ module.exports.save = (req, res) => {
 module.exports.view = (req, res) => {
   Post.findById(req.params.id)
     .populate('user') // populating user to display username
+    .populate({
+      path: 'comments',
+      populate: { path: 'user' },
+    }) // nested populating user for comments to display username
     .exec((error, post) => {
       if (error) {
         console.log(`Error in finding post : ${error}`);
