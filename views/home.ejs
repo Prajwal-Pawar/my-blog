@@ -1,1 +1,15 @@
 <h2>MY BLOG</h2>
+
+<div>
+  <ul>
+    <% for(post of posts){ %>
+    <li>
+      <%= post.title %> <br />
+      <%= post.createdAt.toLocaleDateString() %> <br />
+      <%= post.description %> <br />
+      <%= post.content %> <br />
+      <%= post.user.name %>
+    </li>
+    <% } %>
+  </ul>
+</div>

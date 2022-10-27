@@ -9,6 +9,6 @@ const postController = require('../controllers/post_controller');
 router.get('/create-post', postController.create);
 
 // for /post/save-post route
-router.post('/save-post', postController.save);
+router.post('/save-post', passport.checkAuthentication, postController.save);
 
 module.exports = router;
