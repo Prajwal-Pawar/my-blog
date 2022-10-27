@@ -1,7 +1,32 @@
-<h1>Sign In</h1>
+<div class="container">
+  <h1 class="text-center mt-3">Sign In</h1>
 
-<form action="/user/create-session" method="POST">
-  <input type="email" name="email" placeholder="email" />
-  <input type="password" name="password" placeholder="password" />
-  <button type="submit">Sign In</button>
-</form>
+  <form action="/user/create-session" method="POST">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="email"
+        id="email"
+        class="form-control"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="password"
+        id="password"
+        class="form-control"
+        required
+      />
+    </div>
+    <button type="submit" class="btn btn-primary">Sign In</button>
+  </form>
+
+  <hr />
+  Dont have an account? <a href="/user/sign-up">Sign up</a>
+</div>

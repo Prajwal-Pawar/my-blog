@@ -1,24 +1,25 @@
-<h2>MY BLOG</h2>
+<div class="container">
+  <h2 class="text-center mt-3">MY BLOG</h2>
 
-<div>
-  <ul>
-    <!-- displaying posts -->
-    <% for(post of posts){ %>
-    <li>
-      <%= post.title %> <br />
-      <%= post.createdAt.toLocaleDateString() %> <br />
-      <%= post.description %> <br />
-      <%= post.content %> <br />
-      <%= post.user.name %>
-    </li>
+  <!-- displaying posts -->
+  <% for(post of posts){ %>
+  <div class="card d-inline-flex mt-2" style="width: 25rem">
+    <div class="card-body">
+      <h5 class="card-title text-truncate"><%= post.title %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= post.user.name %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <%= post.createdAt.toLocaleDateString() %>
+      </h6>
+      <p class="card-text text-truncate"><%= post.description %></p>
 
-    <!-- post actions -->
-    <!-- if user is logged in and is posts author -->
-    <% if(locals.user && locals.user.id == post.user.id){ %>
-    <a href="">Edit Post</a>
-    <a href="">Delete Post</a>
-    <% } %>
-    <a href="/post/<%= post.id %>">View Post</a>
-    <% } %>
-  </ul>
+      <!-- post actions -->
+      <!-- if user is logged in and is posts author -->
+      <% if(locals.user && locals.user.id == post.user.id){ %>
+      <a href="" class="card-link link-dark">Edit Post</a>
+      <a href="" class="card-link link-danger">Delete Post</a>
+      <% } %>
+      <a href="/post/<%= post.id %>" class="card-link">View Post</a>
+    </div>
+  </div>
+  <% } %>
 </div>

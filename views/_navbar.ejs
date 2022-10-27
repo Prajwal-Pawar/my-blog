@@ -1,8 +1,56 @@
-<a href="/">MYBLOG</a>
-<% if(locals.user) { %> <%= user.name %>
-<a href="/post/create-post">Create Post</a>
-<a href="/user/sign-out">Sign Out</a>
-<% } else { %>
-<a href="/user/sign-in">Sign in</a>
-<a href="/user/sign-up">Sign up</a>
-<% } %>
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a href="/" class="navbar-brand">MYBLOG</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <!-- if user is logged in -->
+        <% if(locals.user) { %>
+        <li class="nav-item">
+          <a href="/post/create-post" class="nav-link">Create Post</a>
+        </li>
+        <% } %>
+      </ul>
+      <!-- if user is logged in -->
+      <% if(locals.user) { %>
+      <ul class="navbar-nav me-3 mb-2 mb-lg-0">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <%= user.name %>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">View Profile</a></li>
+            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+            <li><a class="dropdown-item" href="#">Your Posts</a></li>
+            <li>
+              <a href="/post/create-post" class="dropdown-item">New Post</a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <a href="/user/sign-out" class="dropdown-item">Logout</a>
+          </ul>
+        </li>
+      </ul>
+      <a href="/user/sign-out" class="link-primary">Sign Out</a>
+      <% } else { %>
+      <a href="/user/sign-in" class="link-primary me-3">Sign in</a>
+      <a href="/user/sign-up" class="link-primary">Sign up</a>
+      <% } %>
+    </div>
+  </div>
+</nav>
