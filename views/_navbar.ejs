@@ -1,5 +1,6 @@
 <a href="/">MyBlog</a>
 <% if(locals.user) { %> <%= user.name %>
+<a href="/post/create-post">Create Post</a>
 <a href="/user/sign-out">Sign Out</a>
 <% } else { %>
 <a href="/user/sign-in">Sign in</a>
