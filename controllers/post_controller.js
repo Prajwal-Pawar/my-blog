@@ -33,3 +33,21 @@ module.exports.save = (req, res) => {
     }
   );
 };
+
+// for viewing posts
+module.exports.view = (req, res) => {
+  Post.findById(req.params.id)
+    .populate('user') // populating user to display username
+    .exec((error, post) => {
+      if (error) {
+        console.log(`Error in finding post : ${error}`);
+        // flash notifications
+        req.flash('error', 'Cant open post !');
+        return;
+      }
+
+      return res.render('view_post', {
+        post: post,
+      });
+    });
+};

@@ -10,6 +10,13 @@
       <%= post.content %> <br />
       <%= post.user.name %>
     </li>
+
+    <!-- if user is logged in and is posts author -->
+    <% if(locals.user && locals.user.id == post.user.id){ %>
+    <a href="">Edit Post</a>
+    <a href="">Delete Post</a>
+    <% } %>
+    <a href="/post/<%= post.id %>">View Post</a>
     <% } %>
   </ul>
 </div>

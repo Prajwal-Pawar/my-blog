@@ -11,4 +11,7 @@ router.get('/create-post', postController.create);
 // for /post/save-post route
 router.post('/save-post', passport.checkAuthentication, postController.save);
 
+// for /post/:id route
+router.get('/:id', postController.view);
+
 module.exports = router;
