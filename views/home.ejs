@@ -16,7 +16,9 @@
       <!-- if user is logged in and is posts author -->
       <% if(locals.user && locals.user.id == post.user.id){ %>
       <a href="" class="card-link link-dark">Edit Post</a>
-      <a href="" class="card-link link-danger">Delete Post</a>
+      <a href="/post/delete/<%= post.id %>" class="card-link link-danger"
+        >Delete Post</a
+      >
       <% } %>
       <a href="/post/<%= post.id %>" class="card-link">View Post</a>
     </div>

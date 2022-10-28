@@ -20,5 +20,6 @@
   6. connect-mongo : for persisting cookies in DB
   7. noty : for notifications
   8. connect-flash: for storing falsh notifications in sessions
+  9. bootstrap : for UI
 
 ---

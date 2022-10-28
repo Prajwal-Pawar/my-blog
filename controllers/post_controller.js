@@ -1,4 +1,5 @@
 const Post = require('../models/post');
+const Comment = require('../models/comment');
 
 // for rendering create post page
 module.exports.create = (req, res) => {
@@ -54,4 +55,28 @@ module.exports.view = (req, res) => {
         post: post,
       });
     });
+};
+
+// for deleting posts
+module.exports.delete = (req, res) => {
+  Post.findById(req.params.id, (error, post) => {
+    // if post author and user is same
+    if (post.user == req.user.id) {
+      // remove post
+      post.remove();
+      // remove comments on post too
+      Comment.deleteMany(
+        {
+          post: req.params.id,
+        },
+        (error) => {
+          // flash notifications
+          req.flash('success', 'Post deleted successfully !');
+          return res.redirect('back');
+        }
+      );
+    } else {
+      return res.redirect('back');
+    }
+  });
 };

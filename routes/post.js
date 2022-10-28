@@ -14,4 +14,7 @@ router.post('/save-post', passport.checkAuthentication, postController.save);
 // for /post/:id route
 router.get('/:id', postController.view);
 
+// for /post/delete/:id route
+router.get('/delete/:id', passport.checkAuthentication, postController.delete);
+
 module.exports = router;
