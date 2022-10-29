@@ -2,10 +2,10 @@
   <h1 class="text-center"><%= post.title %></h1>
   <h5 class="text-center"><%= post.createdAt.toLocaleDateString() %></h5>
   <h5 class="text-center">Post By <%= post.user.name %></h5>
+  <h6 class="text-center mt-3"><%= post.description %></h6>
   <hr />
 
-  <h3 class="text-center mt-3"><%= post.description %></h3>
-  <h5><%= post.content %></h5>
+  <p><%- post.markdown %></p>
   <hr />
 
   <!-- comments -->

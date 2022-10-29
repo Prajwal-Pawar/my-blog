@@ -1,5 +1,11 @@
 const Post = require('../models/post');
 const Comment = require('../models/comment');
+// converting markdown to html
+const { marked } = require('marked');
+// creating html and purifying for markdown
+const createDomPurify = require('dompurify');
+const { JSDOM } = require('jsdom');
+const domPurify = createDomPurify(new JSDOM().window);
 
 // for rendering create post page
 module.exports.create = (req, res) => {
@@ -50,6 +56,9 @@ module.exports.view = (req, res) => {
         req.flash('error', 'Cant open post !');
         return;
       }
+
+      // creating and purifying markdown
+      post.markdown = domPurify.sanitize(marked(post.content));
 
       return res.render('view_post', {
         post: post,
