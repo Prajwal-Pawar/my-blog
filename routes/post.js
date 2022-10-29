@@ -17,4 +17,10 @@ router.get('/:id', postController.view);
 // for /post/delete/:id route
 router.get('/delete/:id', passport.checkAuthentication, postController.delete);
 
+// for /post/edit/:id route
+router.get('/edit/:id', passport.checkAuthentication, postController.edit);
+
+// for /post/update/:id route
+router.post('/update/:id', passport.checkAuthentication, postController.update);
+
 module.exports = router;

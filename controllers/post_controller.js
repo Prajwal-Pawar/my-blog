@@ -80,3 +80,54 @@ module.exports.delete = (req, res) => {
     }
   });
 };
+
+// for rendering edit post page
+module.exports.edit = (req, res) => {
+  // if user is not signed in
+  if (!req.isAuthenticated()) {
+    return res.redirect('/');
+  }
+
+  Post.findById(req.params.id, (error, post) => {
+    if (error) {
+      console.log(`Error in finding post : ${error}`);
+      // flash notifications
+      req.flash('error', 'Error in finding post !');
+      return;
+    }
+
+    // if post author and user is same
+    if (post.user == req.user.id) {
+      return res.render('edit_post', {
+        post: post,
+      });
+    } else {
+      return res.redirect('back');
+    }
+  });
+};
+
+// for updating posts
+module.exports.update = (req, res) => {
+  // find post by id
+  Post.findById(req.params.id, (error, post) => {
+    // if post author and user is same
+    if (post.user == req.user.id) {
+      post.updateOne(req.body, (error) => {
+        if (error) {
+          console.log(`Error in updating post : ${error}`);
+          // flash notifications
+          req.flash('error', 'Error in updating post !');
+          return;
+        }
+
+        // flash notifications
+        req.flash('success', 'Post updated successfully !');
+
+        return res.redirect('/');
+      });
+    } else {
+      return res.redirect('/');
+    }
+  });
+};

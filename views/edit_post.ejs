@@ -1,0 +1,44 @@
+<div class="container">
+  <h1 class="text-center mt-3">Edit Post</h1>
+
+  <form action="/post/update/<%= post.id %>" method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input
+        type="text"
+        placeholder="title"
+        name="title"
+        id="title"
+        value="<%= post.title %>"
+        class="form-control"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="desc" class="form-label">Description</label>
+      <input
+        type="text"
+        placeholder="description"
+        name="description"
+        id="desc"
+        value="<%= post.description %>"
+        class="form-control"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="content" class="form-label">Content</label>
+      <textarea
+        name="content"
+        placeholder="post"
+        cols="30"
+        rows="10"
+        id="content"
+        class="form-control"
+      >
+<%= post.content %>
+        </textarea
+      >
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Post</button>
+  </form>
+</div>
