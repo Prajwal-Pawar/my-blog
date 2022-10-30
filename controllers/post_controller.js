@@ -58,6 +58,7 @@ module.exports.view = (req, res) => {
       }
 
       // creating and purifying markdown
+      // adding markdown to post schema and converting content into markdown
       post.markdown = domPurify.sanitize(marked(post.content));
 
       return res.render('view_post', {

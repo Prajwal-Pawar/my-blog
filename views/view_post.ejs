@@ -3,9 +3,16 @@
   <h5 class="text-center"><%= post.createdAt.toLocaleDateString() %></h5>
   <h5 class="text-center">Post By <%= post.user.name %></h5>
   <h6 class="text-center mt-3"><%= post.description %></h6>
-  <hr />
+  <!-- <hr /> -->
 
-  <p><%- post.markdown %></p>
+  <!-- <p><%- post.markdown %></p> -->
+
+  <div class="card mt-3 mb-3">
+    <div class="card-body">
+      <p class="card-text"><%- post.markdown %></p>
+    </div>
+  </div>
+
   <hr />
 
   <!-- comments -->
@@ -28,7 +35,7 @@
     <button type="submit" class="btn btn-primary">Add Comment</button>
   </form>
 
-  <hr />
+  <!-- <hr /> -->
   <% } %>
 
   <h4 class="text-center">Comments</h4>

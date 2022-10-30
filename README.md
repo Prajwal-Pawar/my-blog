@@ -21,5 +21,8 @@
   7. noty : for notifications
   8. connect-flash: for storing falsh notifications in sessions
   9. bootstrap : for UI
+  10. marked : for converting markdown to html
+  11. dompurify : for sanitizing html
+  12. jsdom : for sanitizing html
 
 ---
