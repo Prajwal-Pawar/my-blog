@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const Post = require('../models/post');
 
 // for rendering sign in page
 module.exports.signIn = (req, res) => {
@@ -77,4 +78,17 @@ module.exports.destroySession = (req, res) => {
       return res.redirect('/');
     });
   });
+};
+
+// for rendering user posts page
+module.exports.posts = (req, res) => {
+  // display user posts only
+  Post.find({ user: req.user })
+    .populate('user') // populating user to display username
+    .exec((error, posts) => {
+      return res.render('user_posts', {
+        // posts: posts,
+        posts,
+      });
+    });
 };

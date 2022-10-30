@@ -25,4 +25,7 @@ router.post(
 // for /user/sign-out route
 router.get('/sign-out', userController.destroySession);
 
+// for /user/posts route
+router.get('/posts', userController.posts);
+
 module.exports = router;

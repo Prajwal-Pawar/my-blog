@@ -1,0 +1,29 @@
+<div class="container">
+  <h2 class="text-center mt-3">Your Posts</h2>
+
+  <!-- displaying posts -->
+  <% for(post of posts){ %>
+  <div class="card d-inline-flex mt-2" style="width: 25rem">
+    <div class="card-body">
+      <h5 class="card-title text-truncate"><%= post.title %></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= post.user.name %></h6>
+      <h6 class="card-subtitle mb-2 text-muted">
+        <%= post.createdAt.toLocaleDateString() %>
+      </h6>
+      <p class="card-text text-truncate"><%= post.description %></p>
+
+      <!-- post actions -->
+      <!-- if user is logged in and is posts author -->
+      <% if(locals.user && locals.user.id == post.user.id){ %>
+      <a href="/post/edit/<%= post.id %>" class="card-link link-dark"
+        >Edit Post</a
+      >
+      <a href="/post/delete/<%= post.id %>" class="card-link link-danger"
+        >Delete Post</a
+      >
+      <% } %>
+      <a href="/post/<%= post.id %>" class="card-link">View Post</a>
+    </div>
+  </div>
+  <% } %>
+</div>
