@@ -28,4 +28,14 @@ router.get('/sign-out', userController.destroySession);
 // for /user/posts route
 router.get('/posts', userController.posts);
 
+// for /user/profile/:id route
+router.get('/profile/:id', userController.profile);
+
+// for /user/profile/update/:id route
+router.post(
+  '/profile/update/:id',
+  passport.checkAuthentication,
+  userController.updateProfile
+);
+
 module.exports = router;

@@ -92,3 +92,34 @@ module.exports.posts = (req, res) => {
       });
     });
 };
+
+// for rendering user profile page
+module.exports.profile = (req, res) => {
+  // find user by id
+  User.findById(req.params.id, (error, user) => {
+    return res.render('user_profile', {
+      user: user,
+    });
+  });
+};
+
+// for updating user profile
+module.exports.updateProfile = (req, res) => {
+  // if user id and params id match
+  if (req.user.id == req.params.id) {
+    User.findByIdAndUpdate(req.params.id, req.body, (error, user) => {
+      if (error) {
+        console.log(`Error in updating profile : ${error}`);
+        // flash notifications
+        req.flash('error', 'Error in updating profile !');
+        return;
+      }
+
+      // flash notifications
+      req.flash('success', 'Profile updated successfully !');
+      return res.redirect('back');
+    });
+  } else {
+    return res.redirect('/');
+  }
+};

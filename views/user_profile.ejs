@@ -1,0 +1,44 @@
+<div class="container">
+  <h1 class="text-center mt-3"><%= user.name %></h1>
+
+  <form action="/user/profile/update/<%= user.id %>" method="POST">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        name="email"
+        id="email"
+        class="form-control"
+        value="<%= user.email %>"
+        readonly
+      />
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Username</label>
+      <input
+        type="text"
+        name="name"
+        placeholder="username"
+        id="name"
+        class="form-control"
+        value="<%= user.name %>"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Enter new password"
+        id="password"
+        class="form-control"
+        value="<%= user.password %>"
+        aria-describedby="password-tip"
+      />
+      <small id="password-tip" class="form-text text-muted"
+        >Leave as it is if you dont want to change password</small
+      >
+    </div>
+    <button type="submit" class="btn btn-primary">Update Profile</button>
+  </form>
+</div>
