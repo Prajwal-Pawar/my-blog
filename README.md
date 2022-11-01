@@ -1,6 +1,9 @@
 # MyBlog
 
-- MyBlog is blogging site, where you can post articles and posts.
+- MyBlog is blogging site, where you can post articles and read others articles.
+- You can comment on others articles to give them feedback.
+- You can delete, edit your articles you wrote.
+- You can edit/update your blog profile.
 
 ---
 
